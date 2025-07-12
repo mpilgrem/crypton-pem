@@ -1,4 +1,4 @@
-Name:                pem
+Name:                crypton-pem
 Version:             0.2.4
 Synopsis:            Privacy Enhanced Mail (PEM) format reader and writer.
 Description:         Privacy Enhanced Mail (PEM) format reader and writer. long description
@@ -6,12 +6,12 @@ License:             BSD3
 License-file:        LICENSE
 Copyright:           Vincent Hanquez <vincent@snarc.org>
 Author:              Vincent Hanquez <vincent@snarc.org>
-Maintainer:          Vincent Hanquez <vincent@snarc.org>
+Maintainer:          Mike Pilgrem <public@pilgrem.com>, Kazu Yamamoto <kazu@iij.ad.jp>
 Build-Type:          Simple
 Category:            Data
 stability:           experimental
 Cabal-Version:       >=1.8
-Homepage:            http://github.com/vincenthz/hs-pem
+Homepage:            http://github.com/mpilgrem/crypton-pem
 extra-source-files:  Tests/pem.hs
 
 Library
@@ -36,9 +36,8 @@ Test-Suite test-pem
                    , test-framework-hunit
                    , HUnit
                    , QuickCheck >= 2.4.0.1
-                   , pem
+                   , crypton-pem
 
 source-repository head
   type: git
-  location: git://github.com/vincenthz/hs-pem
-
+  location: git://github.com/mpilgrem/crypton-pem
