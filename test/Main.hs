@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-orphans #-}
+
 module Main where
 
 import Control.Monad ( replicateM )
@@ -23,9 +25,10 @@ tests =
     , testProperty "marshall" testMarshall
     ]
 
+testUnits :: [Test]
 testUnits = zipWith
      (curry (\(i, (p, bs)) -> testCase (show i) (pemWriteBS p @=? BC.pack bs)))
-     [ 0 .. ]
+     [ 0 :: Int .. ]
      [ (p1, bp1), (p2, bp2) ]
   where p1  = PEM { pemName = "abc", pemHeader = [], pemContent = B.replicate 64 0 }
         bp1 = unlines
@@ -41,6 +44,7 @@ testUnits = zipWith
                 , "-----END xxx-----"
                 ]
 
+testDecodingMultiple :: Test
 testDecodingMultiple = testCase "multiple pems" (pemParseBS content @=? Right expected)
   where expected = [ PEM { pemName = "marker", pemHeader = [], pemContent = B.replicate 12 3 }
                    , PEM { pemName = "marker2", pemHeader = [], pemContent = B.replicate 64 0 }
@@ -61,6 +65,7 @@ testDecodingMultiple = testCase "multiple pems" (pemParseBS content @=? Right ex
             , "and finally some trailing text."
             ]
 
+testUnmatchingNames :: Test
 testUnmatchingNames = testCase "unmatching name" (let r = pemParseBS content in case r of
                                                                                  Left _ -> True @=? True
                                                                                  _      -> r @=? Left "")
@@ -70,13 +75,16 @@ testUnmatchingNames = testCase "unmatching name" (let r = pemParseBS content in 
             , "-----END marker2-----"
             ]
 
+testMarshall :: [PEM] -> Bool
 testMarshall pems = readPems == Right pems
     where readPems = pemParseBS writtenPems
           writtenPems = B.concat (map pemWriteBS pems)
 
+arbitraryName :: Gen [Char]
 arbitraryName = choose (1, 30) >>= \i -> replicateM i arbitraryAscii
     where arbitraryAscii = elements ['A'..'Z']
 
+arbitraryContent :: Gen B.ByteString
 arbitraryContent = choose (1,100) >>= \i ->
                    (B.pack . map fromIntegral) `fmap` replicateM i (choose (0,255) :: Gen Int)
 

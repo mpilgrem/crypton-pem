@@ -20,6 +20,9 @@ extra-doc-files:
 
 language: Haskell98
 
+ghc-options:
+- -Wall
+
 library:
   source-dirs: src
   dependencies:
@@ -29,8 +32,6 @@ library:
   - memory
   exposed-modules:
   - Data.PEM
-  ghc-options:
-  - -Wall
 
 tests:
   test-pem:
