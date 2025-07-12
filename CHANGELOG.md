@@ -11,6 +11,8 @@ and this project adheres to the
 * Move library modules to directory `src`.
 * Rename test-suite module as `test/Main.hs`.
 * Add `CHANGELOG.md` and `README.md` to package.
+* Make `PEM` and instance of type class `NFData`.
+* Deprecate `PEM` instance of type class `NormalForm`.
 
 ## 0.2.4
 

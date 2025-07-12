@@ -29,6 +29,7 @@ library:
   - base >= 3 && < 5
   - basement
   - bytestring
+  - deepseq
   - memory
   exposed-modules:
   - Data.PEM
