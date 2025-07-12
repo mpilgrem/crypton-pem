@@ -6,12 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to the
 [Haskell Package Versioning Policy](https://pvp.haskell.org/).
 
-## UNRELEASED
+## 0.2.5
 
 * Move library modules to directory `src`.
 * Rename test-suite module as `test/Main.hs`.
 * Add `CHANGELOG.md` and `README.md` to package.
-* Make `PEM` and instance of type class `NFData`.
+* Make `PEM` an instance of type class `NFData`.
 * Deprecate `PEM` instance of type class `NormalForm`.
 
 ## 0.2.4
