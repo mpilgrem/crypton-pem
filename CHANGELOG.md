@@ -11,6 +11,8 @@ and this project adheres to the
 * Change default language to `Haskell2010`.
 * Remove deprecated `PEM` instance of type class `NormalForm` and the direct
   dependency on the `basement` package.
+* Depend on the `base64` package, remove direct dependency on the `memory`
+  package and the indirect dependency on the `basement` package.
 
 ## 0.2.5
 

@@ -13,9 +13,10 @@ module Data.PEM.Writer
   , pemWriteLBS
   ) where
 
-import           Data.ByteArray.Encoding ( Base (..), convertToBase )
+import           Data.Base64.Types ( extractBase64 )
 import           Data.ByteString ( ByteString )
 import qualified Data.ByteString as B
+import           Data.ByteString.Base64 ( encodeBase64' )
 import qualified Data.ByteString.Char8 as BC
 import qualified Data.ByteString.Lazy as L
 import           Data.PEM.Types ( PEM (..) )
@@ -36,7 +37,7 @@ pemWrite pem = L.fromChunks ([begin, header] ++ section ++ [end])
   toHeader (k,v) = [ BC.pack k, ":", v, "\n" ]
   -- expect only ASCII. need to find a type to represent it.
   sectionName = BC.pack $ pemName pem
-  encodeLine l = convertToBase Base64 l `B.append` "\n"
+  encodeLine l = (extractBase64 . encodeBase64') l `B.append` "\n"
 
   splitChunks b
     | B.length b > 48 = let (x,y) = B.splitAt 48 b in x : splitChunks y

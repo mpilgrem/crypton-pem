@@ -25,9 +25,10 @@ library:
   source-dirs: src
   dependencies:
   - base >= 3 && < 5
+  - base64
   - bytestring
   - deepseq
-  - memory
+  - text
   exposed-modules:
   - Data.PEM
 

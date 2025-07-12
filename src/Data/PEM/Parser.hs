@@ -18,14 +18,15 @@ module Data.PEM.Parser
   , pemParseLBS
   ) where
 
-import qualified Data.ByteArray as BA
-import           Data.ByteArray.Encoding ( Base(..), convertFromBase )
 import           Data.ByteString ( ByteString )
+import qualified Data.ByteString as B
+import           Data.ByteString.Base64 ( decodeBase64Untyped )
 import qualified Data.ByteString.Char8 as BC
 import qualified Data.ByteString.Lazy as L
 import qualified Data.ByteString.Lazy.Char8 as LC
 import           Data.Either ( partitionEithers )
 import           Data.PEM.Types ( PEM (..) )
+import qualified Data.Text as T
 
 type Line = L.ByteString
 
@@ -66,17 +67,19 @@ parseOnePEM = findPem
       []     -> Left $ Just "invalid PEM: no end marker found"
       (l:ls) -> case endMarker `prefixEat` l of
         Nothing ->
-          case convertFromBase Base64 $ L.toStrict l of
-            Left err -> Left $ Just ("invalid PEM: decoding failed: " ++ err)
+          case decodeBase64Untyped $ L.toStrict l of
+            Left err ->
+              Left $ Just ("invalid PEM: decoding failed: " ++ T.unpack err)
             Right content -> getPemContent name hdrs (content : contentLines) ls
         Just n -> getPemName (finalizePem name hdrs contentLines) n ls
+
   finalizePem name hdrs contentLines nameEnd lbs
     | nameEnd /= name =
         Left $ Just "invalid PEM: end name doesn't match start name"
     | otherwise       =
         let pem = PEM { pemName    = name
                       , pemHeader  = hdrs
-                      , pemContent = BA.concat $ reverse contentLines }
+                      , pemContent = B.concat $ reverse contentLines }
         in  Right (pem, lbs)
 
   prefixEat prefix x =
