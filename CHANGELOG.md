@@ -9,6 +9,8 @@ and this project adheres to the
 ## UNRELEASED
 
 * Change default language to `Haskell2010`.
+* Remove deprecated `PEM` instance of type class `NormalForm` and the direct
+  dependency on the `basement` package.
 
 ## 0.2.5
 

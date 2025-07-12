@@ -39,7 +39,6 @@ library
   ghc-options: -Wall
   build-depends:
       base >=3 && <5
-    , basement
     , bytestring
     , deepseq
     , memory

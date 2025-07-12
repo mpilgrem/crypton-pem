@@ -25,7 +25,6 @@ library:
   source-dirs: src
   dependencies:
   - base >= 3 && < 5
-  - basement
   - bytestring
   - deepseq
   - memory

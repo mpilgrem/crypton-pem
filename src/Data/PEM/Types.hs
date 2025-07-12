@@ -13,7 +13,6 @@ module Data.PEM.Types
   ( PEM (..)
   ) where
 
-import           Basement.NormalForm ( NormalForm (..) )
 import           Control.DeepSeq ( NFData (..) )
 import           Data.ByteString ( ByteString )
 import           GHC.Generics ( Generic )
@@ -29,13 +28,3 @@ data PEM = PEM
     -- ^ Binary content of the section.
   }
   deriving (Eq, Generic, NFData, Show)
-
--- | The t'PEM' instance of 'NormalForm' is deprecated and will be removed from
--- a future version of this package. See the 'NFData' type class exported by
--- "Control.DeepSeq" of the @deepseq@ GHC boot package.
-instance NormalForm PEM where
-  toNormalForm pem =
-    toNormalForm (pemName pem) `seq` nfLbs (pemHeader pem) `seq` pemContent pem `seq` ()
-   where
-    nfLbs []         = ()
-    nfLbs ((s,bs):l) = toNormalForm s `seq` bs `seq` nfLbs l
