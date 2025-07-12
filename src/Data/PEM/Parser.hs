@@ -23,7 +23,7 @@ import qualified Data.ByteString.Char8 as BC
 import qualified Data.ByteString.Lazy as L
 import qualified Data.ByteString.Lazy.Char8 as LC
 
-import Data.PEM.Types
+import Data.PEM.Types ( PEM (..) )
 import Data.ByteArray.Encoding (Base(Base64), convertFromBase)
 import qualified Data.ByteArray as BA
 

@@ -5,10 +5,12 @@
 -- Stability   : experimental
 -- Portability : portable
 --
-module Data.PEM.Types where
+module Data.PEM.Types
+    ( PEM (..)
+    ) where
 
 import Data.ByteString (ByteString)
-import Basement.NormalForm
+import Basement.NormalForm ( NormalForm (..) )
 
 -- | Represent one PEM section
 --

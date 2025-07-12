@@ -11,7 +11,7 @@ module Data.PEM.Writer
     , pemWriteBS
     ) where
 
-import Data.PEM.Types
+import Data.PEM.Types ( PEM (..) )
 import Data.ByteString (ByteString)
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Char8 as BC

@@ -1,7 +1,6 @@
 module Main where
 
-import Control.Applicative
-import Control.Monad
+import Control.Monad ( replicateM )
 
 import qualified Data.ByteString.Char8 as BC
 import Test.QuickCheck hiding ((.&.))
@@ -10,7 +9,7 @@ import Test.Framework.Providers.QuickCheck2 (testProperty)
 import Test.Framework.Providers.HUnit (testCase)
 import Test.HUnit ((@=?))
 
-import Data.PEM
+import Data.PEM ( PEM (..), pemParseBS, pemWriteBS )
 import qualified Data.ByteString as B
 
 main :: IO ()
