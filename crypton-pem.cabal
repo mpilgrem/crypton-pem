@@ -6,8 +6,8 @@ cabal-version: 1.18
 
 name:           crypton-pem
 version:        0.2.5
-synopsis:       Privacy Enhanced Mail (PEM) format reader and writer.
-description:    Privacy Enhanced Mail (PEM) format reader and writer. long description
+synopsis:       Privacy Enhanced Mail (PEM) file format reader and writer.
+description:    A library to read and write files in the Privacy Enhanced Mail (PEM) format.
 category:       Data
 stability:      experimental
 homepage:       http://github.com/mpilgrem/crypton-pem

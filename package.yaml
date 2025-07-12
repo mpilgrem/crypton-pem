@@ -2,9 +2,9 @@ spec-version: 0.36.0 # Avoid legacy behaviour of Hpack
 
 name: crypton-pem
 version: 0.2.5
-synopsis: Privacy Enhanced Mail (PEM) format reader and writer.
+synopsis: Privacy Enhanced Mail (PEM) file format reader and writer.
 description: |
-  Privacy Enhanced Mail (PEM) format reader and writer. long description
+  A library to read and write files in the Privacy Enhanced Mail (PEM) format.
 copyright: Vincent Hanquez <vincent@snarc.org>
 author: Vincent Hanquez <vincent@snarc.org>
 maintainer:

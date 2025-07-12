@@ -1,9 +1,10 @@
-PEM haskell library
-===================
+crypton-pem
+===========
 
 Originally forked from [pem-0.2.4](https://hackage.haskell.org/package/pem-0.2.4).
 
-Handle Privacy Enhanced Message (PEM) format.
+Haskell library to read and write files in the Privacy Enhanced Message (PEM)
+format.
 
 History
 -------
