@@ -12,3 +12,5 @@ and this project adheres to the
 * Change maintainer field to `Mike Pilgrem <public@pilgrem.com>` and
   `Kazu Yamamoto <kazu@iij.ad.jp>`.
 * Add `CHANGELOG.md`.
+* Cabal file specifies `cabal-version: 1.12` (not `>= 1.8`).
+* Cabal file specifies expressly `default-language: Haskell98`

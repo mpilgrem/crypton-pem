@@ -1,0 +1,49 @@
+spec-version: 0.36.0 # Avoid legacy behaviour of Hpack
+
+name: crypton-pem
+version: 0.2.4
+synopsis: Privacy Enhanced Mail (PEM) format reader and writer.
+description: |
+  Privacy Enhanced Mail (PEM) format reader and writer. long description
+copyright: Vincent Hanquez <vincent@snarc.org>
+author: Vincent Hanquez <vincent@snarc.org>
+maintainer:
+- Mike Pilgrem <public@pilgrem.com>
+- Kazu Yamamoto <kazu@iij.ad.jp>
+category: Data
+stability: experimental
+github: mpilgrem/crypton-pem
+homepage: http://github.com/mpilgrem/crypton-pem
+extra-source-files:
+- Tests/pem.hs
+
+language: Haskell98
+
+library:
+  dependencies:
+  - base >= 3 && < 5
+  - basement
+  - bytestring
+  - memory
+  exposed-modules:
+  - Data.PEM
+  other-modules:
+  - Data.PEM.Parser
+  - Data.PEM.Writer
+  - Data.PEM.Types
+  ghc-options:
+  - -Wall
+
+tests:
+  test-pem:
+    source-dirs: Tests
+    main: pem.hs
+    dependencies:
+    - base
+    - crypton-pem
+    - HUnit
+    - QuickCheck >= 2.4.0.1
+    - bytestring
+    - test-framework >= 0.3.3
+    - test-framework-quickcheck2
+    - test-framework-hunit
