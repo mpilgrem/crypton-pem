@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           crypton-pem
-version:        0.2.4
+version:        0.2.5
 synopsis:       Privacy Enhanced Mail (PEM) format reader and writer.
 description:    Privacy Enhanced Mail (PEM) format reader and writer. long description
 category:       Data
