@@ -18,14 +18,16 @@ main = defaultMain tests
 
 tests :: [Test]
 tests =
-    [ testGroup "units" $ testUnits
+    [ testGroup "units" testUnits
     , testDecodingMultiple
     , testUnmatchingNames
     , testProperty "marshall" testMarshall
     ]
 
-testUnits = map (\(i, (p,bs)) -> testCase (show i) (pemWriteBS p @=? BC.pack bs))
-                $ zip [0..] [ (p1, bp1), (p2, bp2) ]
+testUnits = zipWith
+     (curry (\(i, (p, bs)) -> testCase (show i) (pemWriteBS p @=? BC.pack bs)))
+     [ 0 .. ]
+     [ (p1, bp1), (p2, bp2) ]
   where p1  = PEM { pemName = "abc", pemHeader = [], pemContent = B.replicate 64 0 }
         bp1 = unlines
                 [ "-----BEGIN abc-----"
@@ -40,7 +42,7 @@ testUnits = map (\(i, (p,bs)) -> testCase (show i) (pemWriteBS p @=? BC.pack bs)
                 , "-----END xxx-----"
                 ]
 
-testDecodingMultiple = testCase ("multiple pems") (pemParseBS content @=? Right expected)
+testDecodingMultiple = testCase "multiple pems" (pemParseBS content @=? Right expected)
   where expected = [ PEM { pemName = "marker", pemHeader = [], pemContent = B.replicate 12 3 }
                    , PEM { pemName = "marker2", pemHeader = [], pemContent = B.replicate 64 0 }
                    ]
