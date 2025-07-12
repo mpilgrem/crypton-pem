@@ -14,12 +14,11 @@ category: Data
 stability: experimental
 github: mpilgrem/crypton-pem
 homepage: http://github.com/mpilgrem/crypton-pem
-extra-source-files:
-- Tests/pem.hs
 
 language: Haskell98
 
 library:
+  source-dirs: src
   dependencies:
   - base >= 3 && < 5
   - basement
@@ -27,17 +26,13 @@ library:
   - memory
   exposed-modules:
   - Data.PEM
-  other-modules:
-  - Data.PEM.Parser
-  - Data.PEM.Writer
-  - Data.PEM.Types
   ghc-options:
   - -Wall
 
 tests:
   test-pem:
-    source-dirs: Tests
-    main: pem.hs
+    source-dirs: test
+    main: Main.hs
     dependencies:
     - base
     - crypton-pem
