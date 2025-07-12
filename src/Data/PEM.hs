@@ -1,7 +1,7 @@
 -- |
 -- Module      : Data.PEM
 -- License     : BSD-style
--- Maintainer  : Vincent Hanquez <vincent@snarc.org>
+-- Copyright   : (c) 2010-2018 Vincent Hanquez <vincent@snarc.org>
 -- Stability   : experimental
 -- Portability : portable
 --
