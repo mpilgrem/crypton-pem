@@ -9,8 +9,8 @@ Portability : portable
 -}
 
 module Data.PEM.Writer
-  ( pemWriteLBS
-  , pemWriteBS
+  ( pemWriteBS
+  , pemWriteLBS
   ) where
 
 import           Data.ByteArray.Encoding ( Base (..), convertToBase )
@@ -20,7 +20,7 @@ import qualified Data.ByteString.Char8 as BC
 import qualified Data.ByteString.Lazy as L
 import           Data.PEM.Types ( PEM (..) )
 
--- | write a PEM structure to a builder
+-- | Write a t'PEM' to a lazy 'Data.ByteString.Lazy.ByteString'.
 pemWrite :: PEM -> L.ByteString
 pemWrite pem = L.fromChunks ([begin, header] ++ section ++ [end])
  where
@@ -42,10 +42,10 @@ pemWrite pem = L.fromChunks ([begin, header] ++ section ++ [end])
     | B.length b > 48 = let (x,y) = B.splitAt 48 b in x : splitChunks y
     | otherwise       = [b]
 
--- | convert a PEM structure to a bytestring
+-- | Convert the specified t'PEM' to a strict 'ByteString'.
 pemWriteBS :: PEM -> ByteString
 pemWriteBS = B.concat . L.toChunks . pemWrite
 
--- | convert a PEM structure to a lazy bytestring
+-- | Convert the specified t'PEM' to a lazy 'Data.ByteString.Lazy.ByteString'.
 pemWriteLBS :: PEM -> L.ByteString
 pemWriteLBS = pemWrite

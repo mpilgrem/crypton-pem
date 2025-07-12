@@ -9,8 +9,8 @@ Portability : portable
 
 Parse PEM content.
 
-A PEM contains contains from one to many PEM sections. Each section contains an
-optional key-value pair header and a binary content encoded in base64.
+A PEM contains contains one or more PEM sections. Each section contains an
+optional key-value pair header and binary content encoded in base64.
 -}
 
 module Data.PEM.Parser
@@ -92,11 +92,11 @@ pemParse l
       Left (Just err)      -> [Left err]
       Right (p, remaining) -> Right p : pemParse remaining
 
--- | parse a PEM content using a strict bytestring
+-- | Parse PEM content from a strict 'ByteString'.
 pemParseBS :: ByteString -> Either String [PEM]
 pemParseBS b = pemParseLBS $ L.fromChunks [b]
 
--- | parse a PEM content using a dynamic bytestring
+-- | Parse PEM content from a lazy 'Data.ByteString.Lazy.ByteString'.
 pemParseLBS :: L.ByteString -> Either String [PEM]
 pemParseLBS bs = case partitionEithers $ pemParse $ map unCR $ LC.lines bs of
   (x:_,_   ) -> Left x

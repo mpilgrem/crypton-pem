@@ -13,17 +13,15 @@ module Data.PEM.Types
 import           Basement.NormalForm ( NormalForm (..) )
 import           Data.ByteString ( ByteString )
 
--- | Represent one PEM section
---
--- for now headers are not serialized at all.
--- this is just available here as a placeholder for a later implementation.
+-- | A type representing single PEM sections.
 data PEM = PEM
   { pemName    :: String
-    -- ^ the name of the section, found after the dash BEGIN tag.
+    -- ^ The name of the section, found after the dash BEGIN tag.
   , pemHeader  :: [(String, ByteString)]
-    -- ^ optionals key value pair header
+    -- ^ Optional key-value pairs header. The library does not currently
+    -- serialize headers.
   , pemContent :: ByteString
-    -- ^ binary content of the section
+    -- ^ Binary content of the section.
   }
   deriving (Eq, Show)
 
