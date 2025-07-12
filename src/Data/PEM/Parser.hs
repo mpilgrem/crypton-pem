@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP               #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 {- |
@@ -20,7 +21,11 @@ module Data.PEM.Parser
 
 import           Data.ByteString ( ByteString )
 import qualified Data.ByteString as B
+#if MIN_VERSION_base64(1,0,0)
 import           Data.ByteString.Base64 ( decodeBase64Untyped )
+#else
+import           Data.ByteString.Base64 ( decodeBase64 )
+#endif
 import qualified Data.ByteString.Char8 as BC
 import qualified Data.ByteString.Lazy as L
 import qualified Data.ByteString.Lazy.Char8 as LC
@@ -29,6 +34,12 @@ import           Data.PEM.Types ( PEM (..) )
 import qualified Data.Text as T
 
 type Line = L.ByteString
+
+-- | A helper function while base64 < 1.0 is supported.
+#if !MIN_VERSION_base64(1,0,0)
+decodeBase64Untyped :: ByteString -> Either T.Text ByteString
+decodeBase64Untyped = decodeBase64
+#endif
 
 parseOnePEM :: [Line] -> Either (Maybe String) (PEM, [Line])
 parseOnePEM = findPem

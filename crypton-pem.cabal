@@ -39,7 +39,7 @@ library
   ghc-options: -Wall
   build-depends:
       base >=3 && <5
-    , base64
+    , base64 >=0.4.2.2
     , bytestring
     , deepseq
     , text
