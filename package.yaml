@@ -18,8 +18,6 @@ extra-doc-files:
 - CHANGELOG.md
 - README.md
 
-language: Haskell98
-
 ghc-options:
 - -Wall
 

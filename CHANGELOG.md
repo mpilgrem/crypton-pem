@@ -8,6 +8,8 @@ and this project adheres to the
 
 ## UNRELEASED
 
+* Change default language to `Haskell2010`.
+
 ## 0.2.5
 
 * Move library modules to directory `src`.
